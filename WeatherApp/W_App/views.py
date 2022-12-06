@@ -2,7 +2,16 @@ from django.shortcuts import render
 import requests
 from .models import City
 from .forms import CityForm
+#import pytz 
+#import tzlocal
+
 # Create your views here.
+
+#def convert_to_localtime(utc):
+ # fmt = '%d/%m/%Y %H:%M'
+  #ltz = tzlocal.get_localzone()
+  #localtz = utc.replace(tzinfo=pytz.utc).astimezone(ltz)
+  #return localtz.strftime(fmt)
 
 def index(request):
     
