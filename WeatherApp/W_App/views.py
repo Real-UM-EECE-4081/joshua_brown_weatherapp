@@ -2,16 +2,17 @@ from django.shortcuts import render
 import requests
 from .models import City
 from .forms import CityForm
-#import pytz 
-#import tzlocal
+import pytz 
+
+from django.utils import timezone
 
 # Create your views here.
 
-#def convert_to_localtime(utc):
- # fmt = '%d/%m/%Y %H:%M'
-  #ltz = tzlocal.get_localzone()
-  #localtz = utc.replace(tzinfo=pytz.utc).astimezone(ltz)
-  #return localtz.strftime(fmt)
+
+
+
+
+
 
 def index(request):
     
@@ -58,3 +59,16 @@ def index(request):
     context = {'weather_data': weather_data, 'form': form}
 
     return render(request, 'index.html', context)
+
+
+def convert_to_localtime(utctime):
+ 
+  fmt = '%d/%m/%Y %H:%M'
+ 
+  utc = utctime.replace(tzinfo=pytz.UTC)
+ 
+  localtz = utc.astimezone(timezone.get_current_timezone())
+
+  return localtz.strftime(fmt)
+
+#utcdate = convert_to_localtime(date_from_db)
